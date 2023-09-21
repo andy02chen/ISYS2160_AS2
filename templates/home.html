@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+<title>LocalShop Product Catalog</title>
+  <div class="filteredList">
+    <h3>Filters</h3>
+    <button class="filter-option" data-filter="walks" tabindex="-1">Walks</button> 
+    <button class="filter-option" data-filter="swims" tabindex="-1">Swims</button> 
+    <button class="filter-option" data-filter="flies" tabindex="-1">Flies</button> 
+    <button class="filter-option" data-filter="*" tabindex="-1">All</button>
+
+    <h3>Products</h3>
+    <div class="dog walks">Product1 - $10</div>
+    <div class="eagle flies">Product2 - $20</div>
+    <div class="cow walks">Product3 - $5</div>
+    <div class="shark swims">Product4 - $7</div>
+    <div class="canary flies">Product5 - $69</div>
+    <div class="human walks">Product6 - $420</div>
+    <div class="salamander swims walks">Product7 - $0.50</div>
+  </div>
+
+  <button>Checkout</button>
+  <button>Shopping Cart</button>
+
+</body>   
+</html>
