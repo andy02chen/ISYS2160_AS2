@@ -21,8 +21,8 @@ To deactivate venv use <br>
 
 <h1>Run App</h1>
 
-To run the app, ensure you are in the `requirements.txt` directory. <br>
+To run the app, ensure you are in the `ISYS2160_A2` directory. <br>
 ```cd ISYS2160_A2```
 
 To run use <br>
-```python app.py```
+```python run.py```

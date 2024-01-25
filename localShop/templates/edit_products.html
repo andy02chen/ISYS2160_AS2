@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block content %}
+<form method = "POST" action="">
+    <div class="container">
+        <p>
+            <label for="products">Choose a product ID:</label><br>
+            <select name="product-ids" id="product-ids", onchange="myFunction()">
+                {% for product in products %}
+                    <option value="{{ product }}">{{ product }}</option>
+                {% endfor %}
+            </select>    
+            <br>
+
+            <label><b>Old Product Name</b></label><br>
+            <select name="old-product-names" id="old-product-names" class="select select2", disabled = "true"><br>
+                {% for name in old_names %}
+                    <option value="{{ name }}">{{ name }}</option>
+                {% endfor %}
+            </select>    
+            <br>
+
+            <label><b>Old Product Price</b></label><br>
+            <select name="old-product-price" id="old-product-price" class="select select2", disabled = "true"><br>
+                {% for price in old_prices %}
+                    <option value="{{ price }}">{{ price }}</option>
+                {% endfor %}
+            </select>    
+            <br>
+
+            <label><b>Old Product Quantity</b></label><br>
+            <select name="old-product-amount" id="old-product-amount" class="select select2", disabled = "true"><br>
+                {% for amount in old_amounts %}
+                    <option value="{{ amount }}">{{ amount }}</option>
+                {% endfor %}
+            </select>
+            <br>
+            
+            <label><b>Old Product Description</b></label><br>
+            <select name="old-product-desc" id="old-product-desc" class="select select2", disabled = "true"><br>
+                {% for desc in old_desc %}
+                    <option value="{{ desc }}">{{ desc }}</option>
+                {% endfor %}
+            </select>    
+            <br>
+            <br>
+            <br>
+
+            <label><b>New Product Name</b></label><br>
+            <input type="text" placeholder="Enter new Product name" name="new_name" autocomplete="off" required> 
+            <br>
+
+            <label><b>New Product Price</b></label><br>
+            <input type="number" placeholder="Enter new Product Quantity" min="0.05" step="0.05" name="new_price" required>
+            <br>
+
+            <label><b>New Product Quantity</b></label><br>
+            <input type="number" min="1" placeholder="Enter new Product Quantity" name="new_amount" max="999" required> 
+            <br>
+
+            <label><b>New Product Description</b></label><br>
+            <input type="text" placeholder="Enter new Product description" name="new_desc" autocomplete="off" required> 
+            <br>
+
+            <button type="submit">Edit</button>
+        </p>
+    </div>   
+</form>
+
+<script>
+function myFunction() {
+    var x = document.getElementById("product-ids").selectedIndex;
+    document.getElementById("old-product-names").selectedIndex = x;
+    document.getElementById("old-product-price").selectedIndex = x;
+    document.getElementById("old-product-amount").selectedIndex = x;
+    document.getElementById("old-product-desc").selectedIndex = x;
+}
+</script>
+{% endblock content %}

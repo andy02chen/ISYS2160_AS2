@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+<form method = "POST" action="">
+    <div class="container">
+        <p>
+            <label for="products">Choose a product ID:</label><br>
+            <select name="product-ids" id="product-ids", onchange="myFunction()">
+                {% for product in products %}
+                    <option value="{{ product }}">{{ product }}</option>
+                {% endfor %}
+            </select>    
+            <br>
+
+            <label><b>Product Name</b></label><br>
+            <select name="product-names" id="product-names" class="select select2", disabled = "true"><br>
+                {% for name in names %}
+                    <option value="{{ name }}">{{ name }}</option>
+                {% endfor %}
+            </select>    
+            <br>
+
+            <label><b>Product Price</b></label><br>
+            <select name="product-price" id="product-price" class="select select2", disabled = "true"><br>
+                {% for price in prices %}
+                    <option value="{{ price }}">{{ price }}</option>
+                {% endfor %}
+            </select>    
+            <br>
+
+            <label><b>Product Quantity</b></label><br>
+            <select name="product-amount" id="product-amount" class="select select2", disabled = "true"><br>
+                {% for amount in amounts %}
+                    <option value="{{ amount }}">{{ amount }}</option>
+                {% endfor %}
+            </select>    
+            <br>
+
+            <label><b>Product Description</b></label><br>
+            <select name="product-desc" id="product-desc" class="select select2", disabled = "true"><br>
+                {% for desc in descs %}
+                    <option value="{{ desc }}">{{ desc }}</option>
+                {% endfor %}
+            </select>    
+            <br>
+
+            <b>CLICKING THIS BUTTON WILL REMOVE ITEM</b>
+            <br>
+            <button type="submit">Delete</button>
+        </p>
+    </div>   
+</form>
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("product-ids").selectedIndex;
+        document.getElementById("product-names").selectedIndex = x;
+        document.getElementById("product-price").selectedIndex = x;
+        document.getElementById("product-amount").selectedIndex = x;
+        document.getElementById("product-desc").selectedIndex = x;
+    }
+    </script>
+{% endblock content %}

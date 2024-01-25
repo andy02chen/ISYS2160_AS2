@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form method="POST" action=""> 
+    <div class="container">  
+        <p>
+            <label><b>Username : </b></label><br>
+            <input type="text" placeholder="Enter Username" name="username" autocomplete="off" required>
+            <br>
+            <label><b>Password : </b></label><br>
+            <input type="password" placeholder="Enter Password" name="password" required>
+            <br>
+
+            <button type="submit">Login</button>
+        </p> 
+    </div>   
+</form>     
+{% endblock content %}

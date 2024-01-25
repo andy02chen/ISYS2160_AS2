@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}  
+{% for item in cart%}
+    <p>{{item.name}}, {{item.price}}, {{item.quantity}}</p><br>
+<p>Total price: {{sum(cart["Price"])}}</p>
+{% endfor %}
+{% endblock content %}
+

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}  
+<table> 
+  <tr>
+    <th> Order ID </th>
+    <th> Products </th>
+    <th> Date </th>
+    <th> Status </th>
+    <th> Total </th>
+  </tr>
+  {% for row in orders %}
+  <tr>
+      <td> {{ row.id }}</td>
+      <td> {{ row.items|safe }} </td>
+      <td> {{ dates[loop.index - 1] }} </td>
+      <td> {{ row.status }} </td>
+      <td> ${{ row.total }} </td>
+  </tr>
+  {% endfor %}
+</table>
+  
+{% endblock content %}

@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="homepage">
+  <div class="filteredList">
+    <h3>Filters</h3>
+    <form method="post" action="/filter">
+      <input type="submit" value="Alphabetical" name="action1"/>
+      <input type="submit" value="Reverse Alphabetical" name="action2" />
+      <input type="submit" value="Lowest-Highest Price" name="action3" />
+      <input type="submit" value="Highest-Lowest Price" name="action4" />
+      <p>Filter By Letter: </p><input type="text" name = "action5" autocomplete="off"><button type="submit" name = "filter_submit">Filter</button> 
+    </form> 
+
+    <h3>Products</h3> <!--Maybe displaying only the top 5-10 products-->
+      <tr>
+        {% for row in products %}
+          <img src= "{{ row.img }}" width = "150" height = "150">
+          <br>
+          <td><b>Name</b>: {{ row.name }} </td>
+          <td><b>Product</b>: {{ row.price }} </td>
+          <td><b>Quantity</b>: {{ row.quantity }} </td>
+          <br>
+          <td><b>Description:</b> {{ row.desc }}</td>
+          <form method = "post" action="/testing_cart">
+            <button type = "submit" name = "cart" value = "{{ row.id }}">Add to Cart</button>
+          </form>
+          <br>
+        {% endfor %}
+      </tr>
+  </div>
+
+  <div class="cart">
+    <h3>Cart</h3>
+    <form method = "post" action="/clear_cart">
+      <button type = "submit" name = "clear_cart">Clear Cart</button>
+    </form>
+    <tr>
+      {% for row in cart %} 
+      <td><b>Name</b>: {{ row[0] }} </td>
+      <td><b>Price</b>: {{ row[1] }} </td>
+      <td><b>Quantity</b>:
+        <select name = "quantities" id = "{{ row[3] }}" class = "select", onchange="myFunction()">
+          {% set search_id = cart[loop.index - 1][3] %}
+          {% for find_id in products %}
+            {% if find_id.id == search_id %}
+              {% for chosen_quant in range(1, find_id.quantity + 1) %}
+                {% if chosen_quant == row[2] %}
+                  <option selected="selected" value="{{ chosen_quant }}">{{ chosen_quant }}</option>
+                {% else %}
+                  <option value="{{ chosen_quant }}">{{ chosen_quant }}</option>
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+          {% endfor %}
+        </select> </td>
+      <form method = "post" action="/remove_from_cart">
+        <button type = "submit" name = "remove" value = "{{ row[3] }}">Remove Item</button>
+      </form>
+      <br>
+      <br>
+      {% endfor %}
+    </tr>
+
+    {% if loggedIn %}
+      <p><b>Cart Total</b>: {{ total }}</p>
+      <form method = "post" action="/checkout">
+        <button type = "submit" name = "checkout" value = "checkout" onclick=" window.open('/payments','_blank')" >Checkout</button>
+      </form>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+  function myFunction() {
+    // get id of selected drop down box
+    var value1 = event.target.id
+
+    // get the value in the drop down box
+    var x = document.getElementById(event.target.id);
+    var value2 = x.value
+
+    // redirect with parameters
+    window.location.replace(`/edit_cart_quantity?prodId=${value1}&prodAmt=${value2}`);
+
+  }
+</script>
+{% endblock content %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<form method = "POST" action="" enctype="multipart/form-data">
+    <div class="container">
+        <p>
+            <label><b>Product Name</b></label><br>
+            <input type="text" placeholder="Enter Product name" name="name" autocomplete="off" required> 
+            <br>
+
+            <label><b>Product Price</b></label><br>
+            <input type="number" placeholder="Enter Product Quantity" min="0.05" step="0.05" name="price" required>
+            <br>
+
+            <label><b>Product Quantity</b></label><br>
+            <input type="number" min="1" placeholder="Enter Product Quantity" name="amount" max="999" required> 
+            <br>
+
+            <label><b>Product Description</b></label><br>
+            <input type="text" placeholder="Enter Product description" name="desc" autocomplete="off" required> 
+            <br>
+
+            <label><b>Product Image</b></label><br>
+            <input type="file" name = "file" class = "form-control" autocomplete="off" required>
+            <br>
+
+            <button type="submit">Add</button>
+        </p>
+    </div>   
+</form>  
+{% endblock content %}

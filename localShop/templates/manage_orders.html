@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block content %}
+<form method = "POST" action="">
+    <div class="container">
+        <p>
+            <label for="orders">Choose an Order ID:</label><br>
+            <select name="order-ids" id="order-ids", onchange="myFunction()">
+                {% for order in orders %}
+                    <option value="{{ order }}">{{ order }}</option>
+                {% endfor %}
+            </select>    
+            <br>
+
+            <label><b>User</b></label><br>
+            <select name="user" id="user" class="select select2", disabled = "true"><br>
+                {% for name in names %}
+                    <option value="{{ name }}">{{ name }}</option>
+                {% endfor %}
+            </select>
+            <br>
+
+            <label<b>Products</b><br>
+            <select name = 'products' id="products" class = "select select2", disabled = "true"><br>
+                {% for prod in orderproducts %}
+                    <option value="{{ prod }}">{{ prod }}</option>
+                {% endfor %}
+            </select>
+            <br>
+            
+            <label><b>Date</b></label><br>
+            <select name="date" id="date" class="select select2", disabled = "true"><br>
+                {% for date in dates %}
+                    <option value="{{ date }}">{{ date }}</option>
+                {% endfor %}
+            </select>
+            <br>
+
+            <label><b>Status</b></label><br>
+            <select name="status" id="status" class="select select2", disabled = "true"><br>
+                {% for status in statuses %}
+                    <option value="{{ status }}">{{ status }}</option>
+                {% endfor %}
+            </select>
+            <br>
+
+            <label for="status2">Change Status:</label><br>
+            <select name="status2" id="status2">
+                    <option value="Pending">Pending</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Done">Done</option>
+            </select>    
+            <br>
+
+            <label><b>Total</b></label><br>
+            <select name="total" id="total" class="select select2", disabled = "true"><br>
+                {% for total in totals %}
+                    <option value="{{ total }}">{{ total }}</option>
+                {% endfor %}
+            </select>
+            <br>
+
+            <button type="submit">Add</button>
+        </p>
+    </div>   
+</form>
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("order-ids").selectedIndex;
+        document.getElementById("user").selectedIndex = x;
+        document.getElementById("date").selectedIndex = x;
+        document.getElementById("status").selectedIndex = x;
+        document.getElementById("total").selectedIndex = x;
+        document.getElementById("products").selectedIndex = x;
+    }
+    </script>
+{% endblock content %}

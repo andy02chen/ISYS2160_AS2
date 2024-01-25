@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<script src="https://www.paypal.com/sdk/js?client-id=AQBG9312VZ9SXfpEtn85sBM3f52HpawqVQ0NOp0A9lJsB-nhrKWDjeWf47Nky0xE0htML2awy1tyw4rB&currency=AUD"></script>
+
+<div id="paypal-button-container"> 
+  Order sent! Please make your payment:
+</div>
+<script>
+    paypal.Buttons({
+        // Sets up the transaction when a payment button is clicked
+        createOrder: (data, actions) => {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: '77.44'
+                        // TODO: get cart total
+                    }
+                }]
+            });
+        },
+        // Finalize the transaction after payer approval
+        onApprove: (data, actions) => {
+            return actions.order.capture().then(function (orderData) {
+                // Successful capture! For dev/demo purposes:
+                console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                const transaction = orderData.purchase_units[0].payments.captures[0];
+                alert(`Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);
+            });
+        }
+    }).render('#paypal-button-container');
+</script>
+</body>
+</html>
